@@ -49,6 +49,7 @@ flowchart LR
 | --- | --- | --- |
 | POST | `/search` | Live price search, no saving |
 | POST | `/track` | Start tracking a product, saves first snapshot |
+| DELETE | `/products/{product_id}` | Remove a tracked product and its saved history |
 | POST | `/refresh/{product_id}` | New snapshot for a tracked product |
 | GET | `/products` | List tracked products |
 | GET | `/history/{product_id}` | Snapshot history for a product |
