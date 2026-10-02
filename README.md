@@ -21,13 +21,13 @@ returned; it never generates a price on its own.
 
 ## Repository structure
 
-\`\`\`text
+```text
 price-intel/
 ├── backend/        FastAPI + SerpApi + Groq agent
 ├── frontend/        React + Recharts
 ├── .gitignore
 └── README.md
-\`\`\`
+```
 
 ## Architecture
 
