@@ -1,4 +1,4 @@
-export default function TrackedList({ products, snapshotsByProduct, activeId, onSelect }) {
+export default function TrackedList({ products, snapshotsByProduct, activeId, onSelect, onUntrack }) {
   if (products.length === 0) {
     return <p className="empty-state">Nothing tracked yet. Search above and track a product to start building history.</p>;
   }
@@ -27,11 +27,23 @@ export default function TrackedList({ products, snapshotsByProduct, activeId, on
             onClick={() => onSelect(p.id)}
           >
             <span className="label">{p.label}</span>
-            <span style={{ textAlign: "right" }}>
-              <div className="price">
-                {latestPrice != null ? `₹${latestPrice.toLocaleString("en-IN")}` : "—"}
-              </div>
-              {deltaLabel && <div className={`delta ${deltaClass}`}>{deltaLabel}</div>}
+            <span className="ticker-tools" style={{ textAlign: "right" }}>
+              <span>
+                <div className="price">
+                  {latestPrice != null ? `₹${latestPrice.toLocaleString("en-IN")}` : "—"}
+                </div>
+                {deltaLabel && <div className={`delta ${deltaClass}`}>{deltaLabel}</div>}
+              </span>
+              <button
+                type="button"
+                className="secondary untrack-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onUntrack(p.id);
+                }}
+              >
+                Untrack
+              </button>
             </span>
           </div>
         );

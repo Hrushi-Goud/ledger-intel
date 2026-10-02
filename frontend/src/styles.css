@@ -122,6 +122,7 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   padding: 12px 4px;
   border-bottom: 1px solid var(--line);
   cursor: pointer;
@@ -135,11 +136,24 @@ button:disabled {
 
 .ticker-row .label {
   font-size: 14px;
+  flex: 1;
+}
+
+.ticker-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .ticker-row .price {
   font-family: var(--font-mono);
   font-size: 14px;
+}
+
+.ticker-row .untrack-button {
+  padding: 6px 10px;
+  border-color: var(--line);
+  font-size: 11px;
 }
 
 .delta {

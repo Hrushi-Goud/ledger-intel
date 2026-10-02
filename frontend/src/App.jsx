@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { searchProducts, trackProduct, listProducts, getHistory, refreshProduct } from "./api.js";
+import { searchProducts, trackProduct, listProducts, getHistory, refreshProduct, untrackProduct } from "./api.js";
 import TrackedList from "./components/TrackedList.jsx";
 import PriceChart from "./components/PriceChart.jsx";
 import ResultsTable from "./components/ResultsTable.jsx";
@@ -81,6 +81,29 @@ export default function App() {
     }
   }
 
+  async function handleUntrack(productId) {
+    setLoading(true);
+    setError(null);
+    try {
+      await untrackProduct(productId);
+      const nextProducts = products.filter((p) => p.id !== productId);
+      setProducts(nextProducts);
+      setSnapshotsByProduct((prev) => {
+        const next = { ...prev };
+        delete next[productId];
+        return next;
+      });
+
+      if (activeId === productId) {
+        setActiveId(nextProducts[0]?.id ?? null);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const activeProduct = products.find((p) => p.id === activeId);
   const activeSnapshots = snapshotsByProduct[activeId] || [];
   const latestSnapshot = activeSnapshots[activeSnapshots.length - 1];
@@ -121,15 +144,21 @@ export default function App() {
           snapshotsByProduct={snapshotsByProduct}
           activeId={activeId}
           onSelect={setActiveId}
+          onUntrack={handleUntrack}
         />
 
         <div>
           {activeProduct ? (
             <>
               <h2 className="detail-title">{activeProduct.label}</h2>
-              <button className="secondary" onClick={() => handleRefresh(activeProduct.id)} disabled={loading}>
-                Refresh snapshot
-              </button>
+              <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
+                <button className="secondary" onClick={() => handleRefresh(activeProduct.id)} disabled={loading}>
+                  Refresh snapshot
+                </button>
+                <button className="secondary" onClick={() => handleUntrack(activeProduct.id)} disabled={loading}>
+                  Untrack
+                </button>
+              </div>
               <PriceChart snapshots={activeSnapshots} />
               {latestSnapshot && (
                 <>

@@ -28,6 +28,10 @@ export function refreshProduct(productId) {
   return fetch(`${BASE_URL}/refresh/${productId}`, { method: "POST" }).then(handle);
 }
 
+export function untrackProduct(productId) {
+  return fetch(`${BASE_URL}/products/${productId}`, { method: "DELETE" }).then(handle);
+}
+
 export function listProducts() {
   return fetch(`${BASE_URL}/products`).then(handle);
 }
