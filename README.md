@@ -29,6 +29,20 @@ price-intel/
 └── README.md
 \`\`\`
 
+## Architecture
+
+```mermaid
+flowchart LR
+    User[User] --> FE[Frontend\nReact + Vite]
+    FE --> API[FastAPI Backend]
+    API --> SERP[SerpApi\nGoogle Shopping]
+    API --> DB[(Local JSON Data)]
+    API --> GROQ[Groq LLM Agent]
+    GROQ --> SERP
+    GROQ --> DB
+    FE --> API
+```
+
 ## API endpoints
 
 | Method | Endpoint | Description |
