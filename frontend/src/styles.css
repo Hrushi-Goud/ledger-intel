@@ -287,7 +287,53 @@ button:disabled {
   color: var(--ink-soft);
   font-size: 14px;
   margin-top: 4px;
-  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.agent-turn .a > :first-child {
+  margin-top: 0;
+}
+
+.agent-turn .a > :last-child {
+  margin-bottom: 0;
+}
+
+.agent-turn .a table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  color: var(--ink);
+}
+
+.agent-turn .a th,
+.agent-turn .a td {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.agent-turn .a th {
+  color: var(--ink);
+  background: var(--paper-raised);
+}
+
+.agent-turn .a p,
+.agent-turn .a ul,
+.agent-turn .a ol,
+.agent-turn .a blockquote {
+  margin: 8px 0;
+}
+
+.agent-turn .a pre {
+  overflow-x: auto;
+  padding: 10px;
+  background: var(--paper-raised);
+}
+
+.agent-turn .a code {
+  font-family: var(--font-mono);
 }
 
 .agent-row {

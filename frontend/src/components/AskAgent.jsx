@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ask } from "../api.js";
 
 export default function AskAgent() {
@@ -29,7 +31,11 @@ export default function AskAgent() {
         {log.map((turn, i) => (
           <div className="agent-turn" key={i}>
             <div className="q">{turn.q}</div>
-            <div className="a">{turn.a}</div>
+            <div className="a">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {turn.a}
+              </ReactMarkdown>
+            </div>
           </div>
         ))}
       </div>
