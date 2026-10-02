@@ -24,6 +24,7 @@ def track_product(req: TrackRequest):
     product = TrackedProduct(
         query=req.query,
         label=req.label or req.query,
+        location=req.location,
     ).model_dump()
     db.add_product(product)
 
@@ -46,7 +47,7 @@ def refresh_product(product_id: str):
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    results = search_shopping(product["query"])
+    results = search_shopping(product["query"], product.get("location", "India"))
     prices = [r.price for r in results if r.price is not None]
     snapshot = PriceSnapshot(
         product_id=product_id,

@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Literal
 from datetime import datetime
 import uuid
 
@@ -17,7 +17,7 @@ class ShoppingResult(BaseModel):
 
 class SearchRequest(BaseModel):
     query: str
-    location: Optional[str] = "India"
+    location: Literal["India", "Global"] = "India"
 
 
 class SearchResponse(BaseModel):
@@ -29,7 +29,7 @@ class SearchResponse(BaseModel):
 class TrackRequest(BaseModel):
     query: str
     label: Optional[str] = None
-    location: Optional[str] = "India"
+    location: Literal["India", "Global"] = "India"
 
 
 class PriceSnapshot(BaseModel):
@@ -44,6 +44,7 @@ class TrackedProduct(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     query: str
     label: str
+    location: Literal["India", "Global"] = "India"
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
 

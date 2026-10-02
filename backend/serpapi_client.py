@@ -1,10 +1,10 @@
 import os
 import requests
-from typing import List
+from typing import List, Literal
 from models import ShoppingResult
 
 SERPAPI_URL = "https://serpapi.com/search"
-
+SearchLocation = Literal["India", "Global"]
 
 def _parse_price(price_raw: str | None) -> float | None:
     if not price_raw:
@@ -15,8 +15,7 @@ def _parse_price(price_raw: str | None) -> float | None:
     except ValueError:
         return None
 
-
-def search_shopping(query: str, location: str = "India") -> List[ShoppingResult]:
+def search_shopping(query: str, location: SearchLocation = "India") -> List[ShoppingResult]:
     api_key = os.getenv("SERPAPI_KEY")
     if not api_key:
         raise RuntimeError("SERPAPI_KEY is not set in the environment")
@@ -24,12 +23,13 @@ def search_shopping(query: str, location: str = "India") -> List[ShoppingResult]
     params = {
         "engine": "google_shopping",
         "q": query,
-        "gl": "in",
         "hl": "en",
         "google_domain": "google.com",
-        "location": location,
         "api_key": api_key,
     }
+    if location == "India":
+        params["gl"] = "in"
+        params["location"] = "India"
 
     resp = requests.get(SERPAPI_URL, params=params, timeout=20)
     resp.raise_for_status()

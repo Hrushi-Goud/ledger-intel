@@ -7,6 +7,7 @@ import AskAgent from "./components/AskAgent.jsx";
 
 export default function App() {
   const [query, setQuery] = useState("");
+  const [location, setLocation] = useState("India");
   const [searchResults, setSearchResults] = useState(null);
   const [products, setProducts] = useState([]);
   const [snapshotsByProduct, setSnapshotsByProduct] = useState({});
@@ -43,7 +44,7 @@ export default function App() {
     setError(null);
     setSearchResults(null);
     try {
-      const res = await searchProducts(query);
+      const res = await searchProducts(query, location);
       setSearchResults(res);
     } catch (err) {
       setError(err.message);
@@ -56,7 +57,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const product = await trackProduct(query, query);
+      const product = await trackProduct(query, query, location);
       setSearchResults(null);
       setQuery("");
       await loadProducts();
@@ -123,6 +124,14 @@ export default function App() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search a product, e.g. iPhone 16 128GB"
         />
+        <select
+          aria-label="Search location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        >
+          <option value="India">India</option>
+          <option value="Global">Worldwide / Global</option>
+        </select>
         <button type="submit" disabled={loading}>Search</button>
         {searchResults && (
           <button type="button" className="secondary" onClick={handleTrack} disabled={loading}>
