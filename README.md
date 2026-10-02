@@ -1,9 +1,9 @@
 # Ledger
 
+> 🏆 Built for the **[SerpApi India Hackathon 2026](https://serpapi.com/indiahackathon)** — Commerce & Market Intelligence track
+
 A price intelligence agent built on **SerpApi's Google Shopping API** — search live prices
 across sellers, track products over time, and ask it questions in plain English.
-
-Built for the **SerpApi India Hackathon 2026** (Commerce & Market Intelligence track).
 
 ## How SerpApi powers this
 
