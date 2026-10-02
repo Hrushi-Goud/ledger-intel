@@ -46,6 +46,18 @@ def get_product(product_id: str) -> Dict | None:
     return None
 
 
+def delete_product(product_id: str) -> Dict | None:
+    product = get_product(product_id)
+    if product is None:
+        return None
+
+    products = get_products()
+    remaining = [p for p in products if p["id"] != product_id]
+    _write(PRODUCTS_FILE, remaining)
+    delete_snapshots(product_id)
+    return product
+
+
 # --- Snapshots ---
 
 def get_snapshots(product_id: str | None = None) -> List[Dict]:
@@ -60,3 +72,10 @@ def add_snapshot(snapshot: Dict) -> Dict:
     snapshots.append(snapshot)
     _write(SNAPSHOTS_FILE, snapshots)
     return snapshot
+
+
+def delete_snapshots(product_id: str) -> int:
+    snapshots = _read(SNAPSHOTS_FILE)
+    remaining = [s for s in snapshots if s["product_id"] != product_id]
+    _write(SNAPSHOTS_FILE, remaining)
+    return len(snapshots) - len(remaining)

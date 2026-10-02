@@ -62,6 +62,18 @@ def list_products():
     return db.get_products()
 
 
+@router.delete("/products/{product_id}")
+def untrack_product(product_id: str):
+    product = db.get_product(product_id)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    deleted = db.delete_product(product_id)
+    if deleted is not None:
+        return {"deleted": True, "product_id": product_id}
+    raise HTTPException(status_code=404, detail="Product not found")
+
+
 @router.get("/history/{product_id}")
 def get_history(product_id: str):
     product = db.get_product(product_id)
