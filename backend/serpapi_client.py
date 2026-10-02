@@ -15,6 +15,12 @@ def _parse_price(price_raw: str | None) -> float | None:
     except ValueError:
         return None
 
+_STOPWORDS = {"the", "a", "an", "for", "of", "in", "with", "and", "or"}
+
+def _is_relevant(title: str, query_words: set[str]) -> bool:
+    title_words = set(title.lower().split())
+    return bool(title_words & query_words)
+
 def search_shopping(query: str, location: SearchLocation = "India") -> List[ShoppingResult]:
     api_key = os.getenv("SERPAPI_KEY")
     if not api_key:
@@ -52,5 +58,11 @@ def search_shopping(query: str, location: SearchLocation = "India") -> List[Shop
                 reviews=item.get("reviews"),
             )
         )
+
+    query_words = {w for w in query.lower().split() if w not in _STOPWORDS}
+    if query_words:
+        filtered = [r for r in results if _is_relevant(r.title, query_words)]
+        if filtered:
+            return filtered
 
     return results
