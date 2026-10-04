@@ -5,6 +5,11 @@
 A price intelligence agent built on **SerpApi's Google Shopping API** — search live prices
 across sellers, track products over time, and ask it questions in plain English.
 
+🚀 **Live app:** https://ui-ledger-intel.onrender.com  
+🔗 **API:** https://api-ledger-intel.onrender.com
+
+[![Watch the demo](https://drive.google.com/thumbnail?id=1tO4TmYDDRStHDulzIbAeqIQ-3AxtLllx&sz=w1000)](https://drive.google.com/file/d/1tO4TmYDDRStHDulzIbAeqIQ-3AxtLllx/view?usp=sharing)
+
 ## How SerpApi powers this
 
 Every price shown anywhere in this app — live search, tracked snapshots, the AI assistant's
@@ -19,15 +24,6 @@ returned; it never generates a price on its own.
 - **Track** — save a product and build real price history, snapshot by snapshot
 - **Chart** — see the price trend and spot the lowest-price seller at a glance
 - **Ask** — "has the price of X dropped this week?" → the agent tool-calls into real data to answer
-
-## Search locations
-
-The app supports two market scopes:
-
-- **India** — uses the Indian shopping market (`gl=in`) for local seller and price data
-- **Global** — uses a worldwide shopping view for broader market comparisons
-
-The same location selection is preserved when a product is tracked, so historical snapshots stay aligned to the selected market.
 
 ## Repository structure
 
@@ -90,7 +86,3 @@ npm run dev
 ```
 
 Open `http://localhost:5173`. API docs at `http://localhost:8000/docs`.
-
-## License
-
-MIT
