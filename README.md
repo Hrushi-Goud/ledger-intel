@@ -15,9 +15,19 @@ returned; it never generates a price on its own.
 ## What it does
 
 - **Search** — type a product, get live prices across sellers in seconds
+- **Location-aware search** — choose between **India** and **Global** to compare pricing in the local market or worldwide results
 - **Track** — save a product and build real price history, snapshot by snapshot
 - **Chart** — see the price trend and spot the lowest-price seller at a glance
 - **Ask** — "has the price of X dropped this week?" → the agent tool-calls into real data to answer
+
+## Search locations
+
+The app supports two market scopes:
+
+- **India** — uses the Indian shopping market (`gl=in`) for local seller and price data
+- **Global** — uses a worldwide shopping view for broader market comparisons
+
+The same location selection is preserved when a product is tracked, so historical snapshots stay aligned to the selected market.
 
 ## Repository structure
 
@@ -47,8 +57,8 @@ flowchart LR
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| POST | `/search` | Live price search, no saving |
-| POST | `/track` | Start tracking a product, saves first snapshot |
+| POST | `/search` | Live price search, no saving. Accepts `query` and `location` (`India` or `Global`) |
+| POST | `/track` | Start tracking a product, saves first snapshot using the chosen market location |
 | DELETE | `/products/{product_id}` | Remove a tracked product and its saved history |
 | POST | `/refresh/{product_id}` | New snapshot for a tracked product |
 | GET | `/products` | List tracked products |
