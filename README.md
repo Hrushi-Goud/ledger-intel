@@ -8,7 +8,7 @@ across sellers, track products over time, and ask it questions in plain English.
 🚀 **Live app:** https://ui-ledger-intel.onrender.com  
 🔗 **API:** https://api-ledger-intel.onrender.com
 
-[![Watch the demo](./thumbnail.png)](https://drive.google.com/file/d/1tO4TmYDDRStHDulzIbAeqIQ-3AxtLllx/view?usp=sharing)
+[![Watch the demo](./thumbnail.png)](https://drive.google.com/file/d/12HupMGVDv2qpg8P2b0g9ezn9PYwptntn/view?usp=sharing)
 
 ## How SerpApi powers this
 
