@@ -93,3 +93,6 @@ Open `http://localhost:5173`. API docs at `http://localhost:8000/docs`.
 <img src="https://wsrv.nl/?url=github.com/aadarsh-create.png&w=120&h=120&fit=cover&mask=circle" width="60" height="60" alt="aadarsh-create" />
 </a>
 
+<a href="https://github.com/vchittam-dot">
+<img src="https://wsrv.nl/?url=github.com/vchittam-dot.png&w=120&h=120&fit=cover&mask=circle" width="60" height="60" alt="aadarsh-create" />
+</a>
