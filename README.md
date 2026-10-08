@@ -86,3 +86,10 @@ npm run dev
 ```
 
 Open `http://localhost:5173`. API docs at `http://localhost:8000/docs`.
+
+## Collaborators
+
+<a href="https://github.com/aadarsh-create">
+<img src="https://wsrv.nl/?url=github.com/aadarsh-create.png&w=120&h=120&fit=cover&mask=circle" width="60" height="60" alt="aadarsh-create" />
+</a>
+
